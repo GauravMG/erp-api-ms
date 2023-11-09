@@ -20,7 +20,6 @@ export type ClassSectionMappingShortDetails = {
 export type ClassSectionMappingDetails = {
   class: ClassDetails | null;
   section: SectionDetails | null;
-  status: boolean;
 } & ClassSectionMappingShortDetails;
 
 export type CreateClassSectionMappingAPIPayload = {
@@ -29,6 +28,7 @@ export type CreateClassSectionMappingAPIPayload = {
 };
 
 export type CreateClassSectionMappingPayload = {
+  classSectionMappingId: number;
   classId: number;
   sectionId: number;
   status: boolean;

@@ -3,13 +3,13 @@ import { isArray, uniq } from "lodash";
 
 import { Headers, Roles } from "../types/common";
 import {
-  SettingTableData,
-  SettingDetails,
-  CreateSettingPayload,
-  ListSettingPayload,
-  UpdateSettingAPIPayload,
-  DeleteSettingPayload,
-} from "../types/settings";
+  ClassTableData,
+  ClassDetails,
+  CreateClassPayload,
+  ListClassPayload,
+  UpdateClassAPIPayload,
+  DeleteClassPayload,
+} from "../types/classes";
 
 import CommonModel from "../models/CommonModel";
 
@@ -18,14 +18,12 @@ import eventEmitter from "../libs/logging";
 import { ApiResponse } from "../libs/ApiResponse";
 import helper from "../helpers/helper";
 
-class SettingController {
-  private settingModel;
-  private settingIdColumn: string = "settingId";
+class ClassController {
+  private classModel;
+  private classIdColumn: string = "roleId";
 
   constructor() {
-    this.settingModel = new CommonModel("settings", this.settingIdColumn, [
-      "name",
-    ]);
+    this.classModel = new CommonModel("classes", this.classIdColumn, ["name"]);
 
     this.create = this.create.bind(this);
     this.list = this.list.bind(this);
@@ -38,20 +36,20 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateSettingPayload[] = isArray(req.body)
+      const [inputData]: CreateClassPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 
-      //  Setting creation
-      const data: SettingDetails[] = await this.settingModel.bulkCreate(
+      //  Class creation
+      const data: ClassDetails[] = await this.classModel.bulkCreate(
         inputData,
         userId,
       );
       if (!data?.length) {
-        throw new BadRequestException("Unable to create setting.");
+        throw new BadRequestException("Unable to create role.");
       }
       return response.successResponse({
-        message: `Setting created successfully.`,
+        message: `Class created successfully.`,
         data,
       });
     } catch (error) {
@@ -63,21 +61,21 @@ class SettingController {
   public async list(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId }: Headers = req.headers;
+      const { roleId }: Headers = req.headers;
 
-      const { filter, range, sort }: ListSettingPayload =
+      const { filter, range, sort }: ListClassPayload =
         await helper.listFunction(req.body);
 
-      const [data, [{ total }]]: [SettingDetails[], [{ total: number }]] =
+      const [data, [{ total }]]: [ClassDetails[], [{ total: number }]] =
         await Promise.all([
-          await this.settingModel.list(filter, range, sort),
+          await this.classModel.list(filter, range, sort),
 
           // total
-          await this.settingModel.list(
+          await this.classModel.list(
             filter,
             undefined,
             undefined,
-            [`COUNT("${this.settingIdColumn}")::integer AS total`],
+            [`COUNT("${this.classIdColumn}")::integer AS total`],
             true,
           ),
         ]);
@@ -89,7 +87,7 @@ class SettingController {
 
       // result return
       return response.successResponse({
-        message: `Setting list`,
+        message: `Class list`,
         total,
         meta: {
           page: range?.page ?? 1,
@@ -107,28 +105,27 @@ class SettingController {
   public async update(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId }: Headers = req.headers;
+      const { userId, roleId }: Headers = req.headers;
 
-      const inputData: UpdateSettingAPIPayload = req.body;
+      const inputData: UpdateClassAPIPayload = req.body;
 
-      // check if role exist
-      const [settingDetails]: SettingDetails[] = await this.settingModel.list({
-        settingId: inputData.settingId,
+      // check if class exist
+      const [classDetails]: ClassDetails[] = await this.classModel.list({
+        classId: inputData.classId,
       });
-      if (!settingDetails) {
-        throw new BadRequestException("Setting not found", "not_found");
+      if (!classDetails) {
+        throw new BadRequestException("Class not found", "not_found");
       }
 
-      const [data]: SettingDetails[] = await this.settingModel.update(
+      const data: ClassDetails[] = await this.classModel.update(
         inputData,
-        inputData.settingId,
+        inputData.classId,
         userId,
       );
       if (!data) {
-        throw new BadRequestException("Failed to update setting.", "not_found");
       }
       return response.successResponse({
-        message: `Setting updated successfully`,
+        message: `Class updated successfully`,
         data,
       });
     } catch (error) {
@@ -140,25 +137,25 @@ class SettingController {
   public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId }: Headers = req.headers;
+      const { userId, roleId }: Headers = req.headers;
 
-      const settingIds: number[] = isArray(req.body.settingId)
-        ? uniq(req.body.settingId)
-        : [req.body.settingId];
+      const classIds: number[] = isArray(req.body.classId)
+        ? uniq(req.body.classId)
+        : [req.body.classId];
 
-      // check if setting exist
-      const settingDetails: SettingDetails[] = await this.settingModel.list({
-        settingId: settingIds,
+      // check if class exist
+      const [classDetails]: ClassDetails[] = await this.classModel.list({
+        classId: classIds,
       });
-      if (!settingDetails?.length) {
-        throw new BadRequestException("Invalid user.", "not_found");
+      if (!classDetails) {
+        throw new BadRequestException("Invalid user", "not_found");
       }
 
       // delete
-      await this.settingModel.softDelete(settingIds, userId);
+      await this.classModel.softDelete(classIds, userId);
 
       return response.successResponse({
-        message: `Setting deleted successfully.`,
+        message: `Class deleted successfully`,
       });
     } catch (error) {
       eventEmitter.emit("logging", error?.toString());
@@ -167,4 +164,4 @@ class SettingController {
   }
 }
 
-export default new SettingController();
+export default new ClassController();

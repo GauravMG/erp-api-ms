@@ -3,13 +3,13 @@ import { isArray, uniq } from "lodash";
 
 import { Headers, Roles } from "../types/common";
 import {
-  SettingTableData,
-  SettingDetails,
-  CreateSettingPayload,
-  ListSettingPayload,
-  UpdateSettingAPIPayload,
-  DeleteSettingPayload,
-} from "../types/settings";
+  SubjectTableData,
+  SubjectDetails,
+  CreateSubjectPayload,
+  ListSubjectPayload,
+  UpdateSubjectAPIPayload,
+  DeleteSubjectPayload,
+} from "../types/subjects";
 
 import CommonModel from "../models/CommonModel";
 
@@ -18,12 +18,12 @@ import eventEmitter from "../libs/logging";
 import { ApiResponse } from "../libs/ApiResponse";
 import helper from "../helpers/helper";
 
-class SettingController {
-  private settingModel;
-  private settingIdColumn: string = "settingId";
+class SubjectController {
+  private subjectModel;
+  private subjectIdColumn: string = "subjectId";
 
   constructor() {
-    this.settingModel = new CommonModel("settings", this.settingIdColumn, [
+    this.subjectModel = new CommonModel("subjects", this.subjectIdColumn, [
       "name",
     ]);
 
@@ -38,20 +38,20 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateSettingPayload[] = isArray(req.body)
+      const [inputData]: CreateSubjectPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 
-      //  Setting creation
-      const data: SettingDetails[] = await this.settingModel.bulkCreate(
+      //  Subject creation
+      const data: SubjectDetails[] = await this.subjectModel.bulkCreate(
         inputData,
         userId,
       );
       if (!data?.length) {
-        throw new BadRequestException("Unable to create setting.");
+        throw new BadRequestException("Unable to create subject.");
       }
       return response.successResponse({
-        message: `Setting created successfully.`,
+        message: `Subject created successfully.`,
         data,
       });
     } catch (error) {
@@ -65,19 +65,19 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const { filter, range, sort }: ListSettingPayload =
+      const { filter, range, sort }: ListSubjectPayload =
         await helper.listFunction(req.body);
 
-      const [data, [{ total }]]: [SettingDetails[], [{ total: number }]] =
+      const [data, [{ total }]]: [SubjectDetails[], [{ total: number }]] =
         await Promise.all([
-          await this.settingModel.list(filter, range, sort),
+          await this.subjectModel.list(filter, range, sort),
 
           // total
-          await this.settingModel.list(
+          await this.subjectModel.list(
             filter,
             undefined,
             undefined,
-            [`COUNT("${this.settingIdColumn}")::integer AS total`],
+            [`COUNT("${this.subjectIdColumn}")::integer AS total`],
             true,
           ),
         ]);
@@ -89,7 +89,7 @@ class SettingController {
 
       // result return
       return response.successResponse({
-        message: `Setting list`,
+        message: `Subject list`,
         total,
         meta: {
           page: range?.page ?? 1,
@@ -109,26 +109,28 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const inputData: UpdateSettingAPIPayload = req.body;
+      const inputData: UpdateSubjectAPIPayload = req.body;
 
       // check if role exist
-      const [settingDetails]: SettingDetails[] = await this.settingModel.list({
-        settingId: inputData.settingId,
+      const [subjectDetails]: SubjectDetails[] = await this.subjectModel.list({
+        subjectId: inputData.subjectId,
       });
-      if (!settingDetails) {
-        throw new BadRequestException("Setting not found", "not_found");
+      if (!subjectDetails) {
+        throw new BadRequestException("Subject not found", "not_found");
       }
 
-      const [data]: SettingDetails[] = await this.settingModel.update(
+      const [data]: SubjectDetails[] = await this.subjectModel.update(
         inputData,
-        inputData.settingId,
+        inputData.subjectId,
         userId,
       );
+
       if (!data) {
-        throw new BadRequestException("Failed to update setting.", "not_found");
+        throw new BadRequestException("Failed to update subject.", "not_found");
       }
+
       return response.successResponse({
-        message: `Setting updated successfully`,
+        message: `Subject updated successfully`,
         data,
       });
     } catch (error) {
@@ -142,23 +144,23 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const settingIds: number[] = isArray(req.body.settingId)
-        ? uniq(req.body.settingId)
-        : [req.body.settingId];
+      const subjectIds: number[] = isArray(req.body.subjectId)
+        ? uniq(req.body.subjectId)
+        : [req.body.subjectId];
 
-      // check if setting exist
-      const settingDetails: SettingDetails[] = await this.settingModel.list({
-        settingId: settingIds,
+      // check if subject exist
+      const subjectDetails: SubjectDetails[] = await this.subjectModel.list({
+        subjectId: subjectIds,
       });
-      if (!settingDetails?.length) {
+      if (!subjectDetails?.length) {
         throw new BadRequestException("Invalid user.", "not_found");
       }
 
       // delete
-      await this.settingModel.softDelete(settingIds, userId);
+      await this.subjectModel.softDelete(subjectIds, userId);
 
       return response.successResponse({
-        message: `Setting deleted successfully.`,
+        message: `Subject deleted successfully.`,
       });
     } catch (error) {
       eventEmitter.emit("logging", error?.toString());
@@ -167,4 +169,4 @@ class SettingController {
   }
 }
 
-export default new SettingController();
+export default new SubjectController();
