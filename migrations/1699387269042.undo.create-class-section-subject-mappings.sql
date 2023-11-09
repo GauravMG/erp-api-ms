@@ -1,0 +1,10 @@
+-- 1699387269042.undo.create-class-section-subject-mappings.sql
+
+ALTER TABLE "classSectionSubjectMappings"
+DROP CONSTRAINT fk_class_section_subject_mappings_class_section_mapping_id,
+DROP CONSTRAINT fk_class_section_subject_mappings_subject_id,
+DROP CONSTRAINT fk_class_section_subject_mappings_created_by,
+DROP CONSTRAINT fk_class_section_subject_mappings_updated_by,
+DROP CONSTRAINT fk_class_section_subject_mappings_deleted_by;
+
+DROP TABLE IF EXISTS "classSectionSubjectMappings";
