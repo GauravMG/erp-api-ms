@@ -13,12 +13,13 @@ import {
   ClassSectionSubjectMappingRouter,
   ClassTeacherMappingRouter,
   ClassSectionSubjectTeacherMappingRouter,
+  AuthRouter,
 } from ".";
 
 const router = express.Router();
 
 // auth routes
-// router.use("/v1/auths", new AuthRouter().router)
+router.use("/v1/auths", new AuthRouter().router);
 
 // master data routes
 router.use("/v1/roles", new RoleRouter().router);

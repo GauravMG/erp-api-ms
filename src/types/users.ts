@@ -13,6 +13,7 @@ export type UserTableData = {
   state: string;
   country: string;
   postalCode: string;
+  secretHash: string;
   status: boolean;
 } & Manipulator &
   Timestamp;
@@ -29,6 +30,7 @@ export type UserShortDetails = {
   state: string;
   country: string;
   postalCode: string;
+  secretHash: string;
   status: boolean;
 };
 
@@ -42,6 +44,7 @@ export type CreateUserApiPayload = {
   salutation: string;
   firstName: string;
 } & Partial<{
+  secretHash: string;
   middleName: string;
   lastName: string;
   address: string;
@@ -84,6 +87,7 @@ export type ListUserPayload = Partial<{
 export type UpdateUserApiPayload = {
   userId: number;
 } & Partial<{
+  secretHash: string;
   roleId: number;
   salutation: string;
   firstName: string;
@@ -100,6 +104,7 @@ export type UpdateUserApiPayload = {
 export type UpdateUserPayload = {
   userId: number;
 } & Partial<{
+  secretHash: string;
   roleId: number;
   salutation: string;
   firstName: string;

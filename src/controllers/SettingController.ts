@@ -147,10 +147,10 @@ class SettingController {
         : [req.body.settingId];
 
       // check if setting exist
-      const settingDetails: SettingDetails[] = await this.settingModel.list({
+      const [settingDetails]: SettingDetails[] = await this.settingModel.list({
         settingId: settingIds,
       });
-      if (!settingDetails?.length) {
+      if (!settingDetails) {
         throw new BadRequestException("Invalid user.", "not_found");
       }
 

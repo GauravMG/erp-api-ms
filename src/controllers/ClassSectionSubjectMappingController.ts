@@ -81,7 +81,10 @@ class ClassSectionSubjectMappingController {
         );
 
       if (!data) {
-        throw new BadRequestException("Failed to create user.", "not_found");
+        throw new BadRequestException(
+          "Failed to create class section subject mapping.",
+          "not_found",
+        );
       }
 
       return response.successResponse({

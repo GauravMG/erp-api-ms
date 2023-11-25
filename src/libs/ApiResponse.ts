@@ -1,9 +1,34 @@
 import { Request, Response, NextFunction } from "express";
+import { ProvidersFactory } from "./ProvidersFactory";
 
 export class ApiResponse {
   private res;
   constructor(response: Response) {
     this.res = response;
+  }
+
+  public async accumulatedAPITransactionBegin() {
+    const providersFactory = new ProvidersFactory();
+    const { query, release } = await providersFactory.transaction();
+
+    query("BEGIN");
+    release();
+  }
+
+  public async accumulatedAPITransactionSucceed() {
+    const providersFactory = new ProvidersFactory();
+    const { query, release } = await providersFactory.transaction();
+
+    query("COMMIT");
+    release();
+  }
+
+  public async accumulatedAPITransactionFailed() {
+    const providersFactory = new ProvidersFactory();
+    const { query, release } = await providersFactory.transaction();
+
+    query("ROLLBACK");
+    release();
   }
 
   public async successResponse(data: any) {

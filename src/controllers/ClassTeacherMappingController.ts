@@ -11,14 +11,14 @@ import {
   ClassTeacherMappingShortDetails,
   DeleteClassTeacherMappingPayload,
 } from "../types/class-teacher-mappings";
+import { UserDetails } from "../types/users";
+import { ClassSectionMappingDetails } from "../types/class-section-mappings";
 
 import CommonModel from "../models/CommonModel";
 import { BadRequestException, ForbiddenException } from "../libs/exceptions";
 import eventEmitter from "../libs/logging";
 import { ApiResponse } from "../libs/ApiResponse";
 import helper from "../helpers/helper";
-import { UserDetails } from "../types/users";
-import { ClassSectionMappingDetails } from "../types/class-section-mappings";
 
 class ClassTeacherMappingController {
   private classTeacherMappingModel;

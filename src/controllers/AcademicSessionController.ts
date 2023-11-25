@@ -63,7 +63,6 @@ class AcademicSessionController {
   public async list(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { roleId }: Headers = req.headers;
 
       const { filter, range, sort }: ListAcademicSessionPayload =
         await helper.listFunction(req.body);

@@ -31,7 +31,7 @@ class ClassSectionMappingController {
 
   constructor() {
     this.classSectionMappingModel = new CommonModel(
-      "users",
+      "classSectionMappings",
       this.classSectionMappingIdColumn,
       [],
     );
@@ -71,7 +71,10 @@ class ClassSectionMappingController {
         await this.classSectionMappingModel.bulkCreate(inputData, userId);
 
       if (!data) {
-        throw new BadRequestException("Failed to create user.", "not_found");
+        throw new BadRequestException(
+          "Failed to create class section mapping.",
+          "not_found",
+        );
       }
 
       return response.successResponse({
@@ -123,14 +126,14 @@ class ClassSectionMappingController {
       let mappedData: ClassSectionMappingDetails[] = [];
 
       for (let i = 0; i < data.length; i++) {
-        const klass: ClassDetails | null =
+        const classData: ClassDetails | null =
           classes.find((el) => el.classId === data[i].classId) ?? null;
 
         const section: SectionDetails | null =
           sections.find((el) => el.sectionId === data[i].sectionId) ?? null;
         mappedData.push({
           ...data[i],
-          class: klass,
+          class: classData,
           section,
         });
       }
@@ -159,7 +162,7 @@ class ClassSectionMappingController {
   public async update(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const inputData: UpdateClassSectionMappingAPIPayload = req.body;
 
@@ -201,11 +204,13 @@ class ClassSectionMappingController {
   public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
-      const classSectionMappingIds: number[] = isArray(req.body.userId)
-        ? uniq(req.body.userId)
-        : [req.body.userId];
+      const classSectionMappingIds: number[] = isArray(
+        req.body.classSectionMappingId,
+      )
+        ? uniq(req.body.classSectionMappingId)
+        : [req.body.classSectionMappingId];
 
       // check if user exist
       const [classSectionMappingDetails]: ClassSectionMappingDetails[] =

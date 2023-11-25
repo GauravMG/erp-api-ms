@@ -15,7 +15,7 @@ import morgan from "morgan";
 import eventEmitter from "./libs/logging";
 
 /* Routes */
-// import routes from "./routes/MainRouter"
+import routes from "./routes/MainRouter";
 
 /* Middlewares */
 import ApiMiddlewares from "./middlewares/ApiMiddlewares";
@@ -112,7 +112,7 @@ app.use(helmet.xssFilter());
 // middlewares
 // app.use(Validator.schemaValidation)
 // app.use(Validator.validateToken)
-// app.use(routes)
+app.use(routes);
 app.use("*", ApiMiddlewares.middleware404);
 app.use(ApiMiddlewares.exceptionHandler);
 

@@ -11,14 +11,14 @@ import {
   ClassSectionSubjectTeacherMappingShortDetails,
   DeleteClassSectionSubjectTeacherMappingPayload,
 } from "../types/class-section-subject-teacher-mappings";
+import { ClassSectionSubjectMappingDetails } from "../types/class-section-subject-mappings";
+import { UserDetails } from "../types/users";
 
 import CommonModel from "../models/CommonModel";
 import { BadRequestException, ForbiddenException } from "../libs/exceptions";
 import eventEmitter from "../libs/logging";
 import { ApiResponse } from "../libs/ApiResponse";
 import helper from "../helpers/helper";
-import { UserDetails } from "../types/users";
-import { ClassSectionSubjectMappingDetails } from "../types/class-section-subject-mappings";
 
 class ClassSectionSubjectTeacherMappingController {
   private classSectionSubjectTeacherMappingModel;

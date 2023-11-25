@@ -1,4 +1,5 @@
 export * from "./RoleRouter";
+export * from "./AuthRouter";
 export * from "./UserRouter";
 export * from "./SettingRouter";
 export * from "./AcademicSessionRouter";

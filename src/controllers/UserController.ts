@@ -135,7 +135,7 @@ class UserController {
   public async update(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const inputData: UpdateUserPayload = req.body;
 
@@ -169,7 +169,7 @@ class UserController {
   public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const userIds: number[] = isArray(req.body.userId)
         ? uniq(req.body.userId)

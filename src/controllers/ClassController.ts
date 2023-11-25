@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { isArray, uniq } from "lodash";
 
-import { Headers, Roles } from "../types/common";
+import { Headers } from "../types/common";
 import {
   ClassTableData,
   ClassDetails,
@@ -20,7 +20,7 @@ import helper from "../helpers/helper";
 
 class ClassController {
   private classModel;
-  private classIdColumn: string = "roleId";
+  private classIdColumn: string = "classId";
 
   constructor() {
     this.classModel = new CommonModel("classes", this.classIdColumn, ["name"]);
@@ -61,7 +61,6 @@ class ClassController {
   public async list(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { roleId }: Headers = req.headers;
 
       const { filter, range, sort }: ListClassPayload =
         await helper.listFunction(req.body);
@@ -105,7 +104,7 @@ class ClassController {
   public async update(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const inputData: UpdateClassAPIPayload = req.body;
 
@@ -137,7 +136,7 @@ class ClassController {
   public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const classIds: number[] = isArray(req.body.classId)
         ? uniq(req.body.classId)

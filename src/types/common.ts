@@ -41,3 +41,28 @@ export enum Roles {
   Staff = 3,
   User = 4,
 }
+
+export enum VerificationFor {
+  Auth = "authentication",
+  Update = "update-details",
+}
+
+export enum LogInWith {
+  Google = "google",
+  Facebook = "facebook",
+  Twitter = "twitter",
+  Linkedin = "linkedin",
+  Email = "email",
+  Mobile = "mobile",
+}
+
+export enum AccountApprovalStatus {
+  Pending = "pending",
+  Completed = "completed",
+  Rejected = "rejected",
+}
+
+export enum NotificationServices {
+  Mailjet = "mailjet",
+  Google = "google",
+}

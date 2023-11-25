@@ -34,17 +34,14 @@ class RoleController {
   public async create(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
+      const { userId }: Headers = req.headers;
 
       const [inputData]: CreateRolePayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 
       //  Role creation
-      const data: RoleDetails[] = await this.roleModel.bulkCreate(
-        inputData,
-        userId,
-      );
+      const data: RoleDetails[] = await this.roleModel.bulkCreate(inputData);
       if (!data?.length) {
         throw new BadRequestException("Unable to create role.");
       }
@@ -61,10 +58,7 @@ class RoleController {
   public async list(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { roleId }: Headers = req.headers;
-      if (parseInt(roleId) !== Roles.SuperAdmin) {
-        throw new ForbiddenException("Not enough permissions");
-      }
+
       const { filter, range, sort }: ListRolePayload =
         await helper.listFunction(req.body);
 
@@ -108,9 +102,7 @@ class RoleController {
     try {
       const response = new ApiResponse(res);
       const { userId, roleId }: Headers = req.headers;
-      if (parseInt(roleId) !== Roles.SuperAdmin) {
-        throw new ForbiddenException("Not enough permissions");
-      }
+
       const inputData: UpdateRoleAPIPayload = req.body;
 
       // check if role exist
@@ -141,10 +133,8 @@ class RoleController {
   public async delete(req: Request, res: Response, next: NextFunction) {
     try {
       const response = new ApiResponse(res);
-      const { userId, roleId }: Headers = req.headers;
-      if (parseInt(roleId) !== Roles.Admin || Roles.SuperAdmin) {
-        throw new ForbiddenException("Not enough permissions");
-      }
+      const { userId }: Headers = req.headers;
+
       const roleIds: number[] = isArray(req.body.roleId)
         ? uniq(req.body.roleId)
         : [req.body.roleId];
