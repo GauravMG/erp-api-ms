@@ -1,26 +1,38 @@
 [
     {
-		"apiPath": "/v1/auth/refresh-token",
+		"apiPath": "/v1/auths/refresh-token",
 		"method": "POST"
 	},
 	{
-		"apiPath": "/v1/auth/sign-in",
+		"apiPath": "/v1/auths/sign-in",
 		"method": "POST"
 	},
 	{
-		"apiPath": "/v1/auth/verify-otp",
+		"apiPath": "/v1/auths/verify-otp-by-hash",
 		"method": "POST"
 	},
 	{
-		"apiPath": "/v1/auth/send-otp",
+		"apiPath": "/v1/auths/send-otp-hash",
 		"method": "POST"
 	},
 	{
-		"apiPath": "/v1/auth/reset-password",
+		"apiPath": "/v1/auths/reset-password",
 		"method": "POST"
 	},
 	{
-		"apiPath": "/v1/auth/client-register",
+		"apiPath": "/v1/auths/verify-otp-and-reset-password",
+		"method": "POST"
+	},
+	{
+		"apiPath": "/v1/auths/forgot-password",
+		"method": "POST"
+	},
+	{
+		"apiPath": "/v1/auths/register",
+		"method": "POST"
+	},
+	{
+		"apiPath": "/v1/auths/change-password",
 		"method": "POST"
 	}
 ]

@@ -33,8 +33,8 @@ import {
   CreateUserApiPayload,
   CreateUserPayload,
 } from "../types/users";
-import CommonModel from "../models/CommonModel";
 import { RoleDetails } from "../types/roles";
+import CommonModel from "../models/CommonModel";
 
 import helper, {
   generateOtp,
@@ -52,10 +52,10 @@ import {
 } from "../types/verifications";
 
 class AuthController {
-  private authCredentialModel;
-  private roleModel;
-  private verificationModel;
-  private userModel;
+  private authCredentialModel
+  private roleModel
+  private verificationModel
+  private userModel
 
   private authCredentialIdColumn: string = "credentialId";
   private userIdColumn: string = "userId";
@@ -129,7 +129,7 @@ class AuthController {
       const [mobileExist]: AuthShortDetails[] =
         await this.authCredentialModel.list({
           mobile: inputData.mobile,
-          status: true,
+          status: true
         });
 
       if (mobileExist) {
@@ -139,7 +139,7 @@ class AuthController {
       // validate roleid
       const [roleExist]: RoleDetails[] = await this.roleModel.list({
         roleId: inputData.roleId,
-        status: true,
+        status: true
       });
 
       if (!roleExist) {
@@ -151,8 +151,8 @@ class AuthController {
 
       // get role id by slug
       const [roleDetails]: [RoleDetails] = await this.roleModel.list({
-        slug: Roles.SuperAdmin,
-        status: true,
+        roleId: Roles.SuperAdmin,
+        status: true
       });
 
       if (!roleDetails) {
@@ -168,7 +168,7 @@ class AuthController {
             firstName: inputData.firstName,
             lastName: inputData.lastName,
             gender: inputData.gender,
-            dob: inputData.dob,
+            dob: inputData.dob
           },
         ],
         roleDetails.roleId,
@@ -196,6 +196,7 @@ class AuthController {
             mobile: inputData.mobile,
             password: encryptedPassword,
             createdBy: createdUserData.userId,
+            updatedBy: createdUserData.userId
           },
         ]);
 
@@ -852,13 +853,13 @@ class AuthController {
       }
 
       // @ts-ignore
-      delete decodedToken.iat;
+      delete decodedToken.iat
       // @ts-ignore
-      delete decodedToken.exp;
+      delete decodedToken.exp
       // @ts-ignore
-      delete decodedToken.nbf;
+      delete decodedToken.nbf
       // @ts-ignore
-      delete decodedToken.jti;
+      delete decodedToken.jti
 
       // generate new token
       const token: string = jwt.sign(

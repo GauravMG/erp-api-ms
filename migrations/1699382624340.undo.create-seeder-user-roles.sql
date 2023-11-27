@@ -1,4 +1,4 @@
--- 1700939002222.undo.insert-seeder-users.sql
+-- 1699382624340.undo.create-seeder-user-roles.sql
 
 DELETE FROM "roles"
 WHERE "deletedAt" IS NULL, 

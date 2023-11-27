@@ -9,6 +9,7 @@ import {
   ListUserPayload,
   UpdateUserPayload,
   DeleteUserPayload,
+  UpdateUserApiPayload,
 } from "../types/users";
 import { RoleDetails } from "../types/roles";
 
@@ -52,7 +53,7 @@ class UserController {
       // create action
       const [data]: UserDetails[] = await this.userModel.bulkCreate(
         inputData,
-        userId,
+        userId
       );
 
       if (!data) {
@@ -142,16 +143,18 @@ class UserController {
       // check if role exist
       const [userDetails]: UserDetails[] = await this.userModel.list({
         userId: inputData.userId,
-      });
+      })
+      console.log(`userDetails ----->`, userDetails)
       if (!userDetails) {
         throw new BadRequestException("Invalid user.", "not_found");
       }
 
-      const [data]: UserDetails[] = await this.userModel.update(
+      const [data]: UpdateUserApiPayload[] = await this.userModel.update(
         inputData,
         inputData.userId,
         userId,
-      );
+      )
+      console.log(`data ---->`, data)
       if (!data) {
         throw new BadRequestException("Failed to update user.", "not_found");
       }

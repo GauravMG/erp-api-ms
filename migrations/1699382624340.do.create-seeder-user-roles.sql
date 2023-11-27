@@ -1,4 +1,4 @@
--- 1700939002222.do.insert-seeder-users.sql
+-- 1699382624340.do.create-seeder-user-roles.sql
 
 INSERT INTO  roles ("name") VALUES ('super-admin');
 

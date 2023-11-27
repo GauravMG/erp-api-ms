@@ -1,32 +1,380 @@
 [
-  {
-    "source": "types/Auth.ts",
-    "basePath": "/v1/auth",
-    "schemas": [
-      {
-        "apiPath": "/v1/auth/sign-in",
-        "method": "POST",
-        "source": "types/Auth.ts",
-        "schema": "SignInPayload"
-      },
-      {
-        "apiPath": "/v1/auth/send-otp",
-        "method": "POST",
-        "source": "types/Auth.ts",
-        "schema": "SendOtpPayload"
-      },
-      {
-        "apiPath": "/v1/auth/verify-otp",
-        "method": "POST",
-        "source": "types/Auth.ts",
-        "schema": "VerifyOtpPayload"
-      },
-      {
-        "apiPath": "/v1/auth/reset-password",
-        "method": "POST",
-        "source": "types/Auth.ts",
-        "schema": "ResetPasswordPayload"
-      }
-    ]
-  }
+	{
+		"source": "types/roles.ts",
+		"basePath": "/v1/roles",
+		"schemas": [
+			{
+				"apiPath": "/v1/roles/create",
+				"method": "POST",
+				"source": "types/roles.ts",
+				"schema": "CreateRolePayload"
+			},
+			{
+				"apiPath": "/v1/roles/update",
+				"method": "POST",
+				"source": "types/roles.ts",
+				"schema": "UpdateRoleAPIPayload"
+			},
+			{
+				"apiPath": "/v1/roles/list",
+				"method": "POST",
+				"source": "types/roles.ts",
+				"schema": "ListRolePayload"
+			},
+			{
+				"apiPath": "/v1/roles/delete",
+				"method": "POST",
+				"source": "types/roles.ts",
+				"schema": "DeleteRolePayload"
+			}
+		]
+	},
+	{
+		"source": "types/auths.ts",
+		"basePath": "/v1/auths",
+		"schemas": [
+			{
+				"apiPath": "/v1/auth/register",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "RegisterAPIPayload"
+			},
+			{
+				"apiPath": "/v1/auths/send-otp-hash",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "SendOtpByHashPayload"
+			},
+			{
+				"apiPath": "/v1/auths/verify-otp-by-hash",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "VerifyOtpByHash"
+			},
+			{
+				"apiPath": "/v1/auths/verify-otp-and-reset-password",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "ResetPasswordPayload"
+			},
+			{
+				"apiPath": "/v1/auths/forgot-password",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "ForgetPassword"
+			},
+			{
+				"apiPath": "/v1/auths/change-password",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "ChangePasswordPayload"
+			},
+			{
+				"apiPath": "/v1/auths/sign-in",
+				"method": "POST",
+				"source": "types/auths.ts",
+				"schema": "SignInPayload"
+			}
+		]
+	},
+	{
+		"source": "types/users.ts",
+		"basePath": "/v1/users",
+		"schemas": [
+			{
+				"apiPath": "/v1/users/create",
+				"method": "POST",
+				"source": "types/users.ts",
+				"schema": "CreateUserPayload"
+			},
+			{
+				"apiPath": "/v1/users/update",
+				"method": "POST",
+				"source": "types/users.ts",
+				"schema": "UpdateUserPayload"
+			},
+			{
+				"apiPath": "/v1/users/list",
+				"method": "POST",
+				"source": "types/users.ts",
+				"schema": "ListUserPayload"
+			},
+			{
+				"apiPath": "/v1/users/delete",
+				"method": "POST",
+				"source": "types/users.ts",
+				"schema": "DeleteUserPayload"
+			}
+		]
+	},
+	{
+		"source": "types/settings.ts",
+		"basePath": "/v1/settings",
+		"schemas": [
+			{
+				"apiPath": "/v1/settings/create",
+				"method": "POST",
+				"source": "types/settings.ts",
+				"schema": "CreateSettingPayload"
+			},
+			{
+				"apiPath": "/v1/settings/update",
+				"method": "POST",
+				"source": "types/settings.ts",
+				"schema": "UpdateSettingAPIPayload"
+			},
+			{
+				"apiPath": "/v1/settings/list",
+				"method": "POST",
+				"source": "types/settings.ts",
+				"schema": "ListSettingPayload"
+			},
+			{
+				"apiPath": "/v1/settings/delete",
+				"method": "POST",
+				"source": "types/settings.ts",
+				"schema": "DeleteSettingPayload"
+			}
+		]
+	},
+	{
+		"source": "types/academic-sessions.ts",
+		"basePath": "/v1/academic-sessions",
+		"schemas": [
+			{
+				"apiPath": "/v1/academic-sessions/create",
+				"method": "POST",
+				"source": "types/academic-sessions.ts",
+				"schema": "CreateAcademicSessionPayload"
+			},
+			{
+				"apiPath": "/v1/academic-sessions/update",
+				"method": "POST",
+				"source": "types/academic-sessions.ts",
+				"schema": "UpdateAcademicSessionAPIPayload"
+			},
+			{
+				"apiPath": "/v1/academic-sessions/list",
+				"method": "POST",
+				"source": "types/academic-sessions.ts",
+				"schema": "ListAcademicSessionPayload"
+			},
+			{
+				"apiPath": "/v1/academic-sessions/delete",
+				"method": "POST",
+				"source": "types/academic-sessions.ts",
+				"schema": "DeleteAcademicSessionPayload"
+			}
+		]
+	},
+	{
+		"source": "types/classes.ts",
+		"basePath": "/v1/classes",
+		"schemas": [
+			{
+				"apiPath": "/v1/classes/create",
+				"method": "POST",
+				"source": "types/classes.ts",
+				"schema": "CreateClassPayload"
+			},
+			{
+				"apiPath": "/v1/classes/update",
+				"method": "POST",
+				"source": "types/classes.ts",
+				"schema": "UpdateClassAPIPayload"
+			},
+			{
+				"apiPath": "/v1/classes/list",
+				"method": "POST",
+				"source": "types/classes.ts",
+				"schema": "ListClassPayload"
+			},
+			{
+				"apiPath": "/v1/classes/delete",
+				"method": "POST",
+				"source": "types/classes.ts",
+				"schema": "DeleteClassPayload"
+			}
+		]
+	},
+	{
+		"source": "types/sections.ts",
+		"basePath": "/v1/sections",
+		"schemas": [
+			{
+				"apiPath": "/v1/sections/create",
+				"method": "POST",
+				"source": "types/sections.ts",
+				"schema": "CreateSectionPayload"
+			},
+			{
+				"apiPath": "/v1/sections/update",
+				"method": "POST",
+				"source": "types/sections.ts",
+				"schema": "UpdateSectionAPIPayload"
+			},
+			{
+				"apiPath": "/v1/sections/list",
+				"method": "POST",
+				"source": "types/sections.ts",
+				"schema": "ListSectionPayload"
+			},
+			{
+				"apiPath": "/v1/sections/delete",
+				"method": "POST",
+				"source": "types/sections.ts",
+				"schema": "DeleteSectionPayload"
+			}
+		]
+	},
+	{
+		"source": "types/class-section-mappings.ts",
+		"basePath": "/v1/class-section-mappings",
+		"schemas": [
+			{
+				"apiPath": "/v1/class-section-mappings/create",
+				"method": "POST",
+				"source": "types/class-section-mappings.ts",
+				"schema": "CreateClassSectionMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-mappings/update",
+				"method": "POST",
+				"source": "types/class-section-mappings.ts",
+				"schema": "UpdateClassSectionMappingAPIPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-mappings/list",
+				"method": "POST",
+				"source": "types/class-section-mappings.ts",
+				"schema": "ListClassSectionMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-mappings/delete",
+				"method": "POST",
+				"source": "types/class-section-mappings.ts",
+				"schema": "DeleteClassSectionMappingPayload"
+			}
+		]
+	},
+	{
+		"source": "types/subjects.ts",
+		"basePath": "/v1/subjects",
+		"schemas": [
+			{
+				"apiPath": "/v1/subjects/create",
+				"method": "POST",
+				"source": "types/subjects.ts",
+				"schema": "CreateSubjectPayload"
+			},
+			{
+				"apiPath": "/v1/subjects/update",
+				"method": "POST",
+				"source": "types/subjects.ts",
+				"schema": "UpdateSubjectAPIPayload"
+			},
+			{
+				"apiPath": "/v1/subjects/list",
+				"method": "POST",
+				"source": "types/subjects.ts",
+				"schema": "ListSubjectPayload"
+			},
+			{
+				"apiPath": "/v1/subjects/delete",
+				"method": "POST",
+				"source": "types/subjects.ts",
+				"schema": "DeleteSubjectPayload"
+			}
+		]
+	},
+	{
+		"source": "types/class-section-subject-mappings.ts",
+		"basePath": "/v1/class-section-subject-mappings",
+		"schemas": [
+			{
+				"apiPath": "/v1/class-section-subject-mappings/create",
+				"method": "POST",
+				"source": "types/class-section-subject-mappings.ts",
+				"schema": "CreateClassSectionSubjectMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-mappings/update",
+				"method": "POST",
+				"source": "types/class-section-subject-mappings.ts",
+				"schema": "UpdateClassSectionSubjectMappingAPIPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-mappings/list",
+				"method": "POST",
+				"source": "types/class-section-subject-mappings.ts",
+				"schema": "ListClassSectionSubjectMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-mappings/delete",
+				"method": "POST",
+				"source": "types/class-section-subject-mappings.ts",
+				"schema": "DeleteClassSectionSubjectMappingPayload"
+			}
+		]
+	},
+	{
+		"source": "types/class-teacher-mappings.ts",
+		"basePath": "/v1/class-teacher-mappings",
+		"schemas": [
+			{
+				"apiPath": "/v1/class-teacher-mappings/create",
+				"method": "POST",
+				"source": "types/class-teacher-mappings.ts",
+				"schema": "CreateClassTeacherMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-teacher-mappings/update",
+				"method": "POST",
+				"source": "types/class-teacher-mappings.ts",
+				"schema": "UpdateClassTeacherMappingAPIPayload"
+			},
+			{
+				"apiPath": "/v1/class-teacher-mappings/list",
+				"method": "POST",
+				"source": "types/class-teacher-mappings.ts",
+				"schema": "ListClassTeacherMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-teacher-mappings/delete",
+				"method": "POST",
+				"source": "types/class-teacher-mappings.ts",
+				"schema": "DeleteClassTeacherMappingPayload"
+			}
+		]
+	},
+	{
+		"source": "types/class-section-subject-teacher-mappings.ts",
+		"basePath": "/v1/class-section-subject-teacher-mappings",
+		"schemas": [
+			{
+				"apiPath": "/v1/class-section-subject-teacher-mappings/create",
+				"method": "POST",
+				"source": "types/class-section-subject-teacher-mappings.ts",
+				"schema": "CreateClassSectionSubjectTeacherMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-teacher-mappings/update",
+				"method": "POST",
+				"source": "types/class-section-subject-teacher-mappings.ts",
+				"schema": "UpdateClassSectionSubjectTeacherMappingAPIPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-teacher-mappings/list",
+				"method": "POST",
+				"source": "types/class-section-subject-teacher-mappings.ts",
+				"schema": "ListClassSectionSubjectTeacherMappingPayload"
+			},
+			{
+				"apiPath": "/v1/class-section-subject-teacher-mappings/delete",
+				"method": "POST",
+				"source": "types/class-section-subject-teacher-mappings.ts",
+				"schema": "DeleteClassSectionSubjectTeacherMappingPayload"
+			}
+		]
+	}
 ]

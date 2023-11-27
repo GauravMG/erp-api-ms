@@ -18,13 +18,13 @@ export default class CommonModel {
     this.SEARCH_COLUMN_NAME = searchColumnName;
   }
 
-  bulkCreate = async (inputData: any, createdBy?: number) => {
+  bulkCreate = async (inputData: any, createdBy?: number, updatedBy?: number) => {
     // try {
     const providersFactory = new ProvidersFactory();
     const { query, release } = await providersFactory.transaction();
     try {
       // for admin users
-      if (!createdBy) {
+      if (!createdBy && !updatedBy) {
         const superAdmin = await query(`
 						SELECT *
 						FROM "roleId"
@@ -32,15 +32,17 @@ export default class CommonModel {
 							AND "roleId" = ${Roles.SuperAdmin}
 					`);
         if (superAdmin.rows.length > 0) {
-          createdBy = superAdmin.rows[0].userId;
+          createdBy = superAdmin.rows[0].userId,
+          updatedBy = superAdmin.rows[0].userId
         }
       }
 
-      if (createdBy) {
+      if (createdBy && updatedBy) {
         // @ts-ignore
         inputData = inputData.map((el) => ({
           ...el,
           createdBy,
+          updatedBy
         }));
       }
 
@@ -81,7 +83,8 @@ export default class CommonModel {
       }
       sql += commonDataArr.join(", ");
       sql += `RETURNING *`;
-
+      
+      console.log(`sql ------->`, sql)
       // executing query
       const { rows } = await query(sql);
       query("COMMIT");

@@ -28,6 +28,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.12.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
@@ -47,7 +48,8 @@
     "pg": "^8.11.3",
     "postgrator": "^5.0.1",
     "prettier": "^3.0.3",
-    "rotating-file-stream": "^3.1.1"
+    "rotating-file-stream": "^3.1.1",
+    "typescript-json-schema": "^0.62.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

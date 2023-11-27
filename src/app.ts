@@ -20,7 +20,8 @@ import routes from "./routes/MainRouter";
 /* Middlewares */
 import ApiMiddlewares from "./middlewares/ApiMiddlewares";
 import { migrator } from "./libs/migrator";
-// import {generateSchema} from "./lib/schemaGenerator"
+import {generateSchema} from "./libs/schemaGenerator"
+import Validator from "./middlewares/ApiMiddlewares"
 
 const PORT: number = parseInt(process.env.PORT as string);
 const app: Application = express();
@@ -110,7 +111,7 @@ app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 
 // middlewares
-// app.use(Validator.schemaValidation)
+app.use(Validator.schemaValidation)
 // app.use(Validator.validateToken)
 app.use(routes);
 app.use("*", ApiMiddlewares.middleware404);

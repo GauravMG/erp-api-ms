@@ -24,14 +24,5 @@ CREATE TABLE IF NOT EXISTS "users" (
 "deletedBy" INT NULL,
 CONSTRAINT fk_users_role_id FOREIGN KEY ("roleId")
 REFERENCES "roles" ("roleId")
-ON DELETE CASCADE,
-CONSTRAINT fk_users_created_by FOREIGN KEY ("createdBy")
-REFERENCES "users" ("userId")
-ON DELETE CASCADE,
-CONSTRAINT fk_users_updated_by FOREIGN KEY ("updatedBy")
-REFERENCES "users" ("userId")
-ON DELETE CASCADE,
-CONSTRAINT fk_users_deleted_by FOREIGN KEY ("deletedBy")
-REFERENCES "users" ("userId")
 ON DELETE CASCADE
 );

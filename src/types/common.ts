@@ -42,6 +42,13 @@ export enum Roles {
   User = 4,
 }
 
+export type UrlSchema =
+	| {
+			apiPath: string
+			method: string
+	  }
+	| undefined
+
 export enum VerificationFor {
   Auth = "authentication",
   Update = "update-details",
