@@ -1,0 +1,1775 @@
+{
+	"info": {
+		"_postman_id": "4b40fbb9-1cc5-4057-8b98-af4002e718ff",
+		"name": "Auth micro services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20181727"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test-user@mailinator.com\",\n    \"salutation\":\"Mr.\",\n    \"mobile\": \"9999999999\",\n    \"firstName\": \"Super-admin\",\n    \"password\": \"password\",\n    \"roleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "slug",
+								"value": "drop-",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"saikat@santra.com\",\n    \"password\": \"password\",\n    \"roleId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/sign-in",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send-otp-hash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_124@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/send-otp-hash",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"send-otp-hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-otp-and-reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_124@mailinator.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/send-otp-hash",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"send-otp-hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-otp-by-hash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_124@mailinator.com\",\n    \"otp\": \"162884\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/verify-otp-by-hash",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"verify-otp-by-hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_24@mailinator.com\",\n    \"otp\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_24@mailinator.com\",\n    \"previousPassword\": \"password\",\n    \"newPassword\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test_24@mailinator.com\",\n    \"otp\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/auths/forget-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"auths",
+								"forget-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"roleId\": 1,\n   \"firstName\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/users/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/users/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"name\": \"test updated test\",\n    \"address\": \"test 123 here this 122002\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/users/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"6536d77efe135dbd92ba0ac4\",\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/users/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "roles",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/roles/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/roles/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleId\": \"2\",\n    \"name\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/roles/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleId\": \"2\",\n    \"name\": \"testrole\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/roles/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"roles",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "setting",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"testing\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/settings/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"settings",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n},\n\"search\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/settings/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"settings",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"settingId\": \"1\",\n    \"name\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/settings/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"settings",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"settingId\": [2],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/settings/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"settings",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "academic-sessions",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\" \n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/academic-sessions/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"academic-sessions",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/academic-sessions/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"academic-sessions",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"academicSessionId\": 1,\n    \"name\": \"test update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/academic-sessions/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"academic-sessions",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"academicSessionId\": [1,2],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/academic-sessions/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"academic-sessions",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "classes",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/classes/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"classes",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/classes/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"classes",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classId\": 1,\n    \"name\": \"test update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/classes/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"classes",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/classes/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"classes",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sections",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"test sections\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/sections/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"sections",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/sections/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"sections",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sectionId\": 1,\n    \"name\": \"test update\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/sections/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"sections",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sectionId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/sections/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"sections",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class-section-mappings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"classId\": 1,\n   \"sectionId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-mappings/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-mappings",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-mappings/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-mappings",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionMappingId\": 1,\n    \"classId\": 1,\n    \"sectionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-mappings/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-mappings",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionMappingId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-mappings/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-mappings",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subjects",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/subjects/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"subjects",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/subjects/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"subjects",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subjectId\": 1,\n    \"name\": \"test updated test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/subjects/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"subjects",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subjectId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/subjects/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"subjects",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class-section-subject-mappings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"classSectionMappingId\": 1,\n   \"subjectId\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-mappings/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-mappings",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-mappings/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-mappings",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionSubjectMappingId\":1,\n   \"classSectionMappingId\": 1,\n   \"subjectId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-mappings/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-mappings",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionSubjectMappingId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-mappings/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-mappings",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class-teacher-mappings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"classSectionMappingId\":1,\n   \"userId\":2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-teacher-mappings/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-teacher-mappings",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-teacher-mappings/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-teacher-mappings",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classTeacherMappingId\": 1,\n    \"classSectionMappingId\": 1,\n    \"userId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-teacher-mappings/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-teacher-mappings",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classTeacherMappingId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-teacher-mappings/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-teacher-mappings",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class-section-subject-teacher-mappings",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGY2MzZmY2JkMmMwMjVjNWRlYmMxMDUiLCJlbWFpbCI6InNhaWthdEBzYW50cmEuY29tIiwiaWF0IjoxNjk4MTYwMjYwLCJleHAiOjE2OTgxNjM4NjB9.L_hclw3WnZMANHon7h-y-IQas4jZc8OA9-yjcAg6A3I"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"classSectionSubjectMappingId\": 1,\n    \"userId\":1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-teacher-mappings/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-teacher-mappings",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"filter\": {\n\n},\n\"search\": \"sonu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-teacher-mappings/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-teacher-mappings",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionSubjectTeacherMappingId\": 1,\n    \"classSectionSubjectMappingId\": 1,\n    \"userId\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-teacher-mappings/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-teacher-mappings",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"classSectionSubjectTeacherMappingId\": [2,3],\n    \"password\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/class-section-subject-teacher-mappings/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"class-section-subject-teacher-mappings",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
