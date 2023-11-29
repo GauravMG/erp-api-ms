@@ -38,7 +38,7 @@ class SectionController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateSectionPayload[] = isArray(req.body)
+      const inputData: CreateSectionPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 

@@ -38,7 +38,7 @@ class SubjectController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateSubjectPayload[] = isArray(req.body)
+      const inputData: CreateSubjectPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 
@@ -112,7 +112,7 @@ class SubjectController {
       const inputData: UpdateSubjectAPIPayload = req.body;
 
       // check if role exist
-      const [subjectDetails]: SubjectDetails[] = await this.subjectModel.list({
+      const subjectDetails: SubjectDetails[] = await this.subjectModel.list({
         subjectId: inputData.subjectId,
       });
       if (!subjectDetails) {

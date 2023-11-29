@@ -38,7 +38,7 @@ class SettingController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateSettingPayload[] = isArray(req.body)
+      const inputData: CreateSettingPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 

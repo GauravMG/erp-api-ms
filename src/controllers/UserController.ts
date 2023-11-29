@@ -46,15 +46,17 @@ class UserController {
       const [roleExists]: RoleDetails[] = await this.roleModel.list({
         roleId: inputData.roleId,
       });
+      console.log(`inputData ----->>`, inputData);
       if (!roleExists) {
         throw new BadRequestException("Invalid role", "not_found");
       }
-
+      console.log(`test --------1`, userId);
       // create action
       const [data]: UserDetails[] = await this.userModel.bulkCreate(
         inputData,
-        userId
+        1,
       );
+      console.log(`test --------2`, data);
 
       if (!data) {
         throw new BadRequestException("Failed to create user.", "not_found");
@@ -143,8 +145,8 @@ class UserController {
       // check if role exist
       const [userDetails]: UserDetails[] = await this.userModel.list({
         userId: inputData.userId,
-      })
-      console.log(`userDetails ----->`, userDetails)
+      });
+      console.log(`userDetails ----->`, userDetails);
       if (!userDetails) {
         throw new BadRequestException("Invalid user.", "not_found");
       }
@@ -153,8 +155,8 @@ class UserController {
         inputData,
         inputData.userId,
         userId,
-      )
-      console.log(`data ---->`, data)
+      );
+      console.log(`data ---->`, data);
       if (!data) {
         throw new BadRequestException("Failed to update user.", "not_found");
       }

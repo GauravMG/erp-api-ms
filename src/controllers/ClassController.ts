@@ -36,7 +36,7 @@ class ClassController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateClassPayload[] = isArray(req.body)
+      const inputData: CreateClassPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 

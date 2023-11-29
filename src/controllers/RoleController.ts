@@ -9,6 +9,7 @@ import {
   ListRolePayload,
   UpdateRoleAPIPayload,
   DeleteRolePayload,
+  CreateRoleAPIPayload,
 } from "../types/roles";
 
 import CommonModel from "../models/CommonModel";
@@ -36,7 +37,7 @@ class RoleController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateRolePayload[] = isArray(req.body)
+      const inputData: CreateRoleAPIPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 

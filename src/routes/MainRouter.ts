@@ -27,13 +27,21 @@ router.use("/v1/settings", new SettingRouter().router);
 router.use("/v1/academic-sessions", new AcademicSessionRouter().router);
 router.use("/v1/classes", new ClassRouter().router);
 router.use("/v1/sections", new SectionRouter().router);
-router.use("/v1/class-section-mappings", new ClassSectionMappingRouter().router);
+router.use(
+  "/v1/class-section-mappings",
+  new ClassSectionMappingRouter().router,
+);
 router.use("/v1/subjects", new SubjectRouter().router);
-router.use("/v1/class-section-subject-mappings",
-  new ClassSectionSubjectMappingRouter().router);
-router.use("/v1/class-teacher-mappings",
-  new ClassTeacherMappingRouter().router);
-router.use("/v1/class-section-subject-teacher-mappings",
+router.use(
+  "/v1/class-section-subject-mappings",
+  new ClassSectionSubjectMappingRouter().router,
+);
+router.use(
+  "/v1/class-teacher-mappings",
+  new ClassTeacherMappingRouter().router,
+);
+router.use(
+  "/v1/class-section-subject-teacher-mappings",
   new ClassSectionSubjectTeacherMappingRouter().router,
 );
 

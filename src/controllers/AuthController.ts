@@ -52,10 +52,10 @@ import {
 } from "../types/verifications";
 
 class AuthController {
-  private authCredentialModel
-  private roleModel
-  private verificationModel
-  private userModel
+  private authCredentialModel;
+  private roleModel;
+  private verificationModel;
+  private userModel;
 
   private authCredentialIdColumn: string = "credentialId";
   private userIdColumn: string = "userId";
@@ -129,7 +129,7 @@ class AuthController {
       const [mobileExist]: AuthShortDetails[] =
         await this.authCredentialModel.list({
           mobile: inputData.mobile,
-          status: true
+          status: true,
         });
 
       if (mobileExist) {
@@ -139,7 +139,7 @@ class AuthController {
       // validate roleid
       const [roleExist]: RoleDetails[] = await this.roleModel.list({
         roleId: inputData.roleId,
-        status: true
+        status: true,
       });
 
       if (!roleExist) {
@@ -147,16 +147,6 @@ class AuthController {
           `Role id ${inputData.roleId} not found.`,
           "not_found",
         );
-      }
-
-      // get role id by slug
-      const [roleDetails]: [RoleDetails] = await this.roleModel.list({
-        roleId: Roles.SuperAdmin,
-        status: true
-      });
-
-      if (!roleDetails) {
-        throw new BadRequestException(`Role super Admin not found.`);
       }
 
       // create new user
@@ -168,10 +158,10 @@ class AuthController {
             firstName: inputData.firstName,
             lastName: inputData.lastName,
             gender: inputData.gender,
-            dob: inputData.dob
+            dob: inputData.dob,
           },
         ],
-        roleDetails.roleId,
+        Roles.SuperAdmin,
       );
 
       if (!createdUserData) {
@@ -196,7 +186,7 @@ class AuthController {
             mobile: inputData.mobile,
             password: encryptedPassword,
             createdBy: createdUserData.userId,
-            updatedBy: createdUserData.userId
+            updatedBy: createdUserData.userId,
           },
         ]);
 
@@ -853,13 +843,13 @@ class AuthController {
       }
 
       // @ts-ignore
-      delete decodedToken.iat
+      delete decodedToken.iat;
       // @ts-ignore
-      delete decodedToken.exp
+      delete decodedToken.exp;
       // @ts-ignore
-      delete decodedToken.nbf
+      delete decodedToken.nbf;
       // @ts-ignore
-      delete decodedToken.jti
+      delete decodedToken.jti;
 
       // generate new token
       const token: string = jwt.sign(

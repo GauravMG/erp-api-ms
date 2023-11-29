@@ -1,45 +1,45 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction } from "express";
 
-const Ajv = require("ajv")
-const schemas = require("../../schema/cache.json")
+const Ajv = require("ajv");
+const schemas = require("../../schema/cache.json");
 
-const ajv = new Ajv()
+const ajv = new Ajv();
 class ApiMiddleware {
   constructor() {}
 
   public async schemaValidation(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		let reqUrl: string = req.url
-		const typeModule: string[] = reqUrl.split("/")
-		typeModule.pop()
-		const schemaModulePath = Object.keys(schemas).find(
-			(el) => el === typeModule.join("/")
-		)
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    let reqUrl: string = req.url;
+    const typeModule: string[] = reqUrl.split("/");
+    typeModule.pop();
+    const schemaModulePath = Object.keys(schemas).find(
+      (el) => el === typeModule.join("/"),
+    );
 
-		if (schemaModulePath) {
-			// @ts-ignore
-			const schemaModule = schemas[schemaModulePath]
-			// @ts-ignore
-			const schema = schemaModule["schemas"]
-			const apiSchema = Object.keys(schema).find((el) => el === reqUrl)
-			if (apiSchema) {
-				// @ts-ignore
-				const valid = ajv.validate(schema[apiSchema], req.body)
+    if (schemaModulePath) {
+      // @ts-ignore
+      const schemaModule = schemas[schemaModulePath];
+      // @ts-ignore
+      const schema = schemaModule["schemas"];
+      const apiSchema = Object.keys(schema).find((el) => el === reqUrl);
+      if (apiSchema) {
+        // @ts-ignore
+        const valid = ajv.validate(schema[apiSchema], req.body);
 
-				if (!valid) {
-					next({
-						statusCode: 403,
-						code: `invalid_data`,
-						message: ajv.errors[0].message
-					})
-				}
-			}
-		}
-		next()
-	}
+        if (!valid) {
+          next({
+            statusCode: 403,
+            code: `invalid_data`,
+            message: ajv.errors[0].message,
+          });
+        }
+      }
+    }
+    next();
+  }
 
   public async exceptionHandler(
     err: any,

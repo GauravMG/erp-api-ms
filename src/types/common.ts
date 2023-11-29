@@ -43,11 +43,11 @@ export enum Roles {
 }
 
 export type UrlSchema =
-	| {
-			apiPath: string
-			method: string
-	  }
-	| undefined
+  | {
+      apiPath: string;
+      method: string;
+    }
+  | undefined;
 
 export enum VerificationFor {
   Auth = "authentication",

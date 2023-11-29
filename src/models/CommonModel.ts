@@ -18,31 +18,30 @@ export default class CommonModel {
     this.SEARCH_COLUMN_NAME = searchColumnName;
   }
 
-  bulkCreate = async (inputData: any, createdBy?: number, updatedBy?: number) => {
+  bulkCreate = async (inputData: any, createdBy?: number) => {
     // try {
     const providersFactory = new ProvidersFactory();
     const { query, release } = await providersFactory.transaction();
     try {
       // for admin users
-      if (!createdBy && !updatedBy) {
+      if (!createdBy) {
         const superAdmin = await query(`
 						SELECT *
-						FROM "roleId"
+						FROM "roles"
 						WHERE "deletedAt" IS NULL
 							AND "roleId" = ${Roles.SuperAdmin}
 					`);
         if (superAdmin.rows.length > 0) {
-          createdBy = superAdmin.rows[0].userId,
-          updatedBy = superAdmin.rows[0].userId
+          createdBy = superAdmin.rows[0].userId;
         }
       }
 
-      if (createdBy && updatedBy) {
+      if (createdBy) {
         // @ts-ignore
         inputData = inputData.map((el) => ({
           ...el,
           createdBy,
-          updatedBy
+          updatedBy: createdBy,
         }));
       }
 
@@ -83,8 +82,8 @@ export default class CommonModel {
       }
       sql += commonDataArr.join(", ");
       sql += `RETURNING *`;
-      
-      console.log(`sql ------->`, sql)
+
+      console.log(`sql ------->`, sql);
       // executing query
       const { rows } = await query(sql);
       query("COMMIT");
@@ -302,7 +301,7 @@ export default class CommonModel {
       if (!updatedBy) {
         const superAdmin = await query(`
 					SELECT *
-					FROM "userDetails"
+					FROM "roles"
 					WHERE "roleId" = ${Roles.SuperAdmin}
 						AND "deletedAt" IS NULL
 				`);
@@ -368,7 +367,7 @@ export default class CommonModel {
       if (!deletedBy) {
         const superAdmin = await query(`
 						SELECT *
-						FROM "userDetails"
+						FROM "roles"
 						WHERE "roleId" = ${Roles.SuperAdmin}
 							AND "deletedAt" IS NULL
 					`);
@@ -409,7 +408,7 @@ export default class CommonModel {
       if (!deletedBy) {
         const superAdmin = await query(`
 						SELECT *
-						FROM "userDetails"
+						FROM "roles"
 						WHERE "roleId" = ${Roles.SuperAdmin}
 							AND "deletedAt" IS NULL
 					`);
@@ -476,7 +475,7 @@ export default class CommonModel {
       if (!updatedBy) {
         const superAdmin = await query(`
 					SELECT *
-					FROM "userDetails"
+					FROM "roles"
 					WHERE "roleId" = ${Roles.SuperAdmin}
 						AND "deletedAt" IS NULL
 				`);

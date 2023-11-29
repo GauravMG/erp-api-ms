@@ -34,7 +34,7 @@
 		"basePath": "/v1/auths",
 		"schemas": [
 			{
-				"apiPath": "/v1/auth/register",
+				"apiPath": "/v1/auths/register",
 				"method": "POST",
 				"source": "types/auths.ts",
 				"schema": "RegisterAPIPayload"

@@ -40,7 +40,7 @@ class AcademicSessionController {
       const response = new ApiResponse(res);
       const { userId }: Headers = req.headers;
 
-      const [inputData]: CreateAcademicSessionPayload[] = isArray(req.body)
+      const inputData: CreateAcademicSessionPayload[] = isArray(req.body)
         ? req.body
         : [req.body];
 
