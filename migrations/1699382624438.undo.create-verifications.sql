@@ -1,4 +1,4 @@
--- 1699382624468.undo.create-user-verifications.sql
+-- 1699382624438.do.create-verifications.sql
 
 ALTER TABLE "userVerifications" 
 DROP CONSTRAINT fk_verifications_user_id,

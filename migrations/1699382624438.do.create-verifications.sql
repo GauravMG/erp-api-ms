@@ -1,6 +1,6 @@
--- 1699382624468.undo.create-user-verifications.sql
+-- 1699382624428.do.create-verifications.sql
 
-CREATE TYPE verification_for_enum AS ENUM ('authentication', 'update-details');
+CREATE TYPE verification_for_enum AS ENUM ('authentication','updateDetails');
 
 CREATE TABLE "userVerifications" (
     "verificationId" SERIAL PRIMARY KEY,

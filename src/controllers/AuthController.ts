@@ -325,25 +325,25 @@ class AuthController {
         );
       }
       // delete existing non-verified entries
-      // await this.verificationModel.softDeleteByFilter(
-      // 	{
-      // 		value: authDetails.email,
-      // 		isEmailVerified: false
-      // 	},
-      // 	userId
-      // )
-      // await this.verificationModel.bulkCreate(
-      // 	[
-      // 		{
-      // 			verificationType: LogInWith.Email,
-      // 			value: authDetails.userName,
-      // 			isVerified: false,
-      // 			verificationFor: VerificationFor.Auth,
-      // 			otp: encryptedOtp
-      // 		}
-      // 	],
-      // 	userId
-      // )
+      await this.verificationModel.softDeleteByFilter(
+      	{
+      		value: authDetails.email,
+      		isEmailVerified: false
+      	},
+      	userId
+      )
+      await this.verificationModel.bulkCreate(
+      	[
+      		{
+      			verificationType: LogInWith.Email,
+      			value: authDetails.email,
+      			isVerified: false,
+      			verificationFor: VerificationFor.Auth,
+      			otp: encryptedOtp
+      		}
+      	],
+      	userId
+      )
 
       // send otp to email
       await sendOtpToEmail(email, otp, "User");
