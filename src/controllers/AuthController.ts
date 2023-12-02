@@ -157,8 +157,6 @@ class AuthController {
             salutation: inputData.salutation,
             firstName: inputData.firstName,
             lastName: inputData.lastName,
-            gender: inputData.gender,
-            dob: inputData.dob,
           },
         ],
         Roles.SuperAdmin,
@@ -228,7 +226,6 @@ class AuthController {
         // send otp to mobile
         helper.sendSMS(userAuthCreation.mobile, otp),
       ]);
-
       // verification code
       await this.verificationModel.bulkCreate(
         [

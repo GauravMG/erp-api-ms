@@ -158,7 +158,6 @@ export async function sendEmailToEmail(configuration: Configuration) {
     if (!configuration.fileName) {
       configuration.fileName = "default.ejs";
     }
-
     // node mailer config
     const config: EmailTransportConfiguration = {
       host: emailProviderByService.host as string,
@@ -169,7 +168,6 @@ export async function sendEmailToEmail(configuration: Configuration) {
       },
     };
     const transport = nodemailer.createTransport(config);
-
     const emailArr: EmailAddressData[] = [];
     const ccEmailArr: string[] = [];
     const bccEmailArr: string[] = [];

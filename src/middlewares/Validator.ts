@@ -1,17 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 const Ajv = require("ajv");
+import { UrlSchema } from "../types/common";
+
+const schemas = require("../../schema/cache.json");
+const publicApis = require("../../src/schemas/publicRoutes.json");
+
 import CommonModel from "../models/CommonModel";
 import { BadRequestException } from "../libs/exceptions";
-// import {UrlSchema} from "../types/common"
-
-// import schemas from "../../schema/cache.json"
-const schemas = require("../../schema/cache.json");
-// import publicApis from "../schemas/publicRoutes.json"
-// import reservedApi from "../schemas/reservedRoutes.json"
 
 const ajv = new Ajv();
-
 class Validator {
   super() {}
 
@@ -158,47 +156,45 @@ class Validator {
     }
   }
 
-  public async roleValidation(req: Request, res: Response, next: NextFunction) {
-    const roleId: number = Number(req.headers.roleId as string);
-    const reqUrl: string = req.url;
-    const reqMethod: string = req.method;
-    let isPermissionRequired: boolean = false;
-    let roleSlug: string = "";
-    // @ts-ignore
-    for (let i = 0; i < reservedApi.length; i++) {
-      if (
-        // @ts-ignore
-        reqUrl === reservedApi[i].apiPath &&
-        // @ts-ignore
-        reqMethod === reservedApi[i].method
-      ) {
-        isPermissionRequired = true;
-        // @ts-ignore
-        roleSlug = reservedApi[i].slug;
-      }
-    }
+  // public async roleValidation(req: Request, res: Response, next: NextFunction) {
+  //   const roleId: number = Number(req.headers.roleId as string);
+  //   const reqUrl: string = req.url;
+  //   const reqMethod: string = req.method;
+  //   let isPermissionRequired: boolean = false;
 
-    // check for permissions required
-    if (!isPermissionRequired) {
-      return next();
-    }
+  //   // @ts-ignore
+  //   for (let i = 0; i < reservedApi.length; i++) {
+  //     if (
+  //       // @ts-ignore
+  //       reqUrl === reservedApi[i].apiPath &&
+  //       // @ts-ignore
+  //       reqMethod === reservedApi[i].method
+  //     ) {
+  //       isPermissionRequired = true;
+  //     }
+  //   }
 
-    // get role
-    const roleCommonModel = new CommonModel("roles", "roleId", []);
-    const [roleDetails] = await roleCommonModel.list({
-      slug: roleSlug,
-    });
+  //   // check for permissions required
+  //   if (!isPermissionRequired) {
+  //     return next();
+  //   }
 
-    // validate roleId
-    if (isNaN(roleId) || Number(roleId) !== Number(roleDetails.roleId)) {
-      return next({
-        statusCode: 403,
-        message: "Forbidden request",
-      });
-    }
+  //   // get role
+  //   const roleCommonModel = new CommonModel("roles", "roleId", []);
+  //   const [roleDetails] = await roleCommonModel.list({
+  //     roleId,
+  //   });
 
-    next();
-  }
+  //   // validate roleId
+  //   if (isNaN(roleId) || Number(roleId) !== Number(roleDetails.roleId)) {
+  //     return next({
+  //       statusCode: 403,
+  //       message: "Forbidden request",
+  //     });
+  //   }
+
+  //   next();
+  // }
 }
 
 export default new Validator();
