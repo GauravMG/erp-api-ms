@@ -1,6 +1,6 @@
--- 1699382624428.do.create-auth-credentails.sql
+-- 1699382624431.do.create-auth-credentails.sql
 
-CREATE TABLE "authCredentials" (
+CREATE TABLE IF NOT EXISTS "authCredentials" (
     "credentialId" SERIAL PRIMARY KEY,
 	"userId" BIGINT NOT NULL,
     "email" VARCHAR(150) NOT NULL,

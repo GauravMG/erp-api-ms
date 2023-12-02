@@ -1,10 +1,5 @@
 -- 1699382624340.do.create-seeder-user-roles.sql
 
-INSERT INTO  roles ("name") VALUES ('super-admin');
-
-INSERT INTO users ("roleId", "salutation", "firstName", "createdBy", "updatedBy") 
-VALUES(1, 'Mr.', 'Super-Admin', 1, 1);
-
 INSERT INTO "notificationServices" (
     "service",
     "serviceType",
@@ -23,30 +18,30 @@ INSERT INTO "notificationServices" (
 
 INSERT INTO "authCredentials"(
 "userId",
-"userName",
+"email",
+"mobile",
 "password",
-"logInWith",
-"createdBy"
+"createdBy",
+"updatedBy"
 )
 VALUES (
 1,
-'chat-user@mailinator.com',
+'test-user@mailinator.com',
+'9999999999',
 '$2b$10$PSUKtjK5oSBLskY.o5TwE.jm4U2NBIVblQRs0cTFN893npHx0KYYa',
-'email',
+1,
 1
 );
 
 INSERT INTO "userVerifications"(
-"verificationType",
-"value",
-"isVerified",
-"verificationFor",
+"userId",
+"valueForEmail",
+"isEmailVerified",
 "createdBy"
 )
 VALUES (
-'email',
-'chat-user@mailinator.com',
+1,
+'test-user@mailinator.com',
 TRUE,
-'authentication',
 1
 );

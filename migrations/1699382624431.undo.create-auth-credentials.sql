@@ -1,4 +1,4 @@
--- 1699382624428.undo.create-auth-credentials.sql
+-- 1699382624431.undo.create-auth-credentials.sql
 
 ALTER TABLE "authCredentials" 
 DROP CONSTRAINT fk_auth_credentials_user_id,

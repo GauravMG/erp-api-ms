@@ -2,7 +2,7 @@
 
 CREATE TYPE verification_for_enum AS ENUM ('authentication','updateDetails');
 
-CREATE TABLE "userVerifications" (
+CREATE TABLE IF NOT EXISTS "userVerifications" (
     "verificationId" SERIAL PRIMARY KEY,
     "userId" INT NOT NULL,
     "valueForEmail" VARCHAR(100) NULL,
