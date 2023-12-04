@@ -10,6 +10,7 @@ import {
   UpdateUserPayload,
   DeleteUserPayload,
   UpdateUserApiPayload,
+  UserShortDetails,
 } from "../types/users";
 import { RoleDetails } from "../types/roles";
 
@@ -46,17 +47,16 @@ class UserController {
       const [roleExists]: RoleDetails[] = await this.roleModel.list({
         roleId: inputData.roleId,
       });
-      console.log(`inputData ----->>`, inputData);
+
       if (!roleExists) {
         throw new BadRequestException("Invalid role", "not_found");
       }
-      console.log(`test --------1`, userId);
+
       // create action
-      const [data]: UserDetails[] = await this.userModel.bulkCreate(
-        inputData,
-        1,
+      const data: Omit<UserShortDetails, "secretHash"> = await this.userModel.bulkCreate(
+        [inputData],
+        userId
       );
-      console.log(`test --------2`, data);
 
       if (!data) {
         throw new BadRequestException("Failed to create user.", "not_found");

@@ -23,7 +23,7 @@ import { migrator } from "./libs/migrator";
 import { generateSchema } from "./libs/schemaGenerator";
 import Validator from "./middlewares/Validator";
 
-const PORT: number = parseInt(process.env.PORT as string);
+const PORT: number = parseInt(process.env.API_PORT as string);
 const app: Application = express();
 
 // Environments

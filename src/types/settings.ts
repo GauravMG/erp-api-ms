@@ -14,12 +14,12 @@ export type SettingDetails = {
 };
 
 export type CreateSettingAPIPayload = {
-  dataJson: string;
+  dataJson: object
 };
 
 export type CreateSettingPayload = {
-  dataJson: string;
-  status: boolean;
+  dataJson: string 
+  status: boolean
 };
 
 type FilterSettingPayload = {
@@ -44,5 +44,5 @@ export type UpdateSettingAPIPayload = {
 }>;
 
 export type DeleteSettingPayload = {
-  settingId: number;
+  settingId: number | number[]
 };
